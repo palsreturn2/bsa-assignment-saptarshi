@@ -1,0 +1,3 @@
+AQI ground truth data
+
+https://app.cpcbccr.com/AQI_India/
