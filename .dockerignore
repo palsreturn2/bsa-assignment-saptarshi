@@ -1,0 +1,28 @@
+#Ignore the logs directory
+logs/
+
+#Ignore .tar files
+*.tar
+*.tar.gz
+
+#Ignoring configuration files
+*.config
+
+#Ignoring git and cache folders
+.git
+.cache
+
+#Ignoring all compiled files
+*.pyc
+*~
+__pycache__
+
+#Ignoring sqlite db file
+*.sqlite3
+
+#Ignoring static and media and venv variables
+/static
+/media
+/venv
+.DS_Store
+
