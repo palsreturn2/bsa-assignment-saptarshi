@@ -1,3 +1,7 @@
 AQI ground truth data
 
 https://app.cpcbccr.com/AQI_India/
+
+Landsat NDVI
+
+https://www.usgs.gov/landsat-missions/landsat-normalized-difference-vegetation-index
