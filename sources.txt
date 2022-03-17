@@ -1,6 +1,7 @@
 AQI ground truth data
 
 https://app.cpcbccr.com/AQI_India/
+https://aqicn.org/data-platform/register/
 
 Landsat NDVI
 
