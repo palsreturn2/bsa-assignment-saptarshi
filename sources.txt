@@ -5,4 +5,4 @@ https://aqicn.org/data-platform/register/
 
 Landsat NDVI
 
-https://www.usgs.gov/landsat-missions/landsat-normalized-difference-vegetation-index
+https://earthexplorer.usgs.gov/

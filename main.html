@@ -14577,7 +14577,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14596,7 +14596,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reading air quality sensor data obtained from CPCB platform.</span>
@@ -14604,13 +14604,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="c1"># Locations where CPCB air quality sensors are present and are collecting ground truth data</span>
+<span class="c1"># Air quality sensor locations of the three ground stations</span>
 
-<span class="n">locations</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;Mandir Marg, Delhi - DPCC&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Chandni Chowk, Delhi - IITM&#39;</span><span class="p">,</span>    
-    <span class="s1">&#39;Loni, Ghaziabad - UPPCB&#39;</span>
-<span class="p">]</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/aq_stations.geojson&#39;</span><span class="p">)</span>
+
+<span class="n">locations</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span>
 
 <span class="c1">#Lockdown Start date 19th April</span>
 
@@ -14652,7 +14652,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Lockdown Date:  2021-04-19 00:00:00
+<pre>0      Mandir Marg, Delhi - DPCC
+1    Chandni Chowk, Delhi - IITM
+2        Loni, Ghaziabad - UPPCB
+Name: name, dtype: object
+Lockdown Date:  2021-04-19 00:00:00
 Locations Mean AQI
 Mandir Marg, Delhi - DPCC=164.85
 Chandni Chowk, Delhi - IITM=216.57142857142858
@@ -14680,7 +14684,7 @@ Loni, Ghaziabad - UPPCB=266.8125
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Observations from the data</span>
@@ -14700,100 +14704,12 @@ Loni, Ghaziabad - UPPCB=266.8125
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Air quality sensor locations of the three ground stations</span>
-
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/aq_stations.geojson&#39;</span><span class="p">)</span>
-<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>name</th>
-      <th>geometry</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Mandir Marg, Delhi - DPCC</td>
-      <td>POINT (77.20106 28.63643)</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Chandni Chowk, Delhi - IITM</td>
-      <td>POINT (77.22723 28.65676)</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Loni, Ghaziabad - UPPCB</td>
-      <td>POINT (77.27879 28.75729)</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Region of interest: Buffer of 0.02 degrees is taken around the ground sensors.</span>
@@ -14801,8 +14717,6 @@ Loni, Ghaziabad - UPPCB=266.8125
 
 <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
 <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
-
-<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14810,56 +14724,12 @@ Loni, Ghaziabad - UPPCB=266.8125
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;AxesSubplot:&gt;</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAAD4CAYAAAC365mAAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjUuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/YYfK9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAagElEQVR4nO3deXhVhZnH8e+bPWFJCIQ9IQgFREWUiGht3UerdUZbR6Xa4rgwY/VR6XSmtdOx2zjTirZjO9Npa0tdSq0LuFU7iA6ozCgSVlEkRWQ1kLAEspDlJu/8cU7wEk5y93vuvXk/z5PnOffes7wH8ubsvyuqijHmWFl+F2BMKrLGMMaDNYYxHqwxjPFgjWGMhxy/C4jEsGHDtLKy0u8yTBpYvXr1PlUti3b6tGqMyspKqqur/S7DpAER2R7L9LYrZYwHawxjPIRsDBEpF5FlIvK+iLwnIne5708XkbdFZJ2IVIvITI9pz3c/7/5pFZEr3c8uFJE17vsrRGRi3NfOmGipap8/wCjgdHd4EFADTAVeAT7nvn8ZsDzEfEqBA0CR+7oGONEd/irwSKhaZsyYocaEA6jWEL9Pff2EPPhW1Vqg1h1uFJFNwBhAgcHuaMXAxyFmdTXwJ1Vt6Z51hNMbkzQRnZUSkUrgNGAlcDewREQewNklOzvE5NcBPw56fQvwsogcAQ4Ds3pZ5lxgLkBFRUUk5RoTtbAPvkVkILAIuFtVDwO3AfNUtRyYB/ymj2lHAacAS4Lengdcpqpjgd9ybNMcpaq/UtUqVa0qK4v6tLQxEQmrMUQkF6cpFqrqYvftOUD38NPAcQffQa4BnlXVDnd+ZcCpqrrS/fxJQm9xjEmakLtSIiI4W4NNqhr8V/1j4FxgOXAB8Oc+ZjMbuCfo9UGgWEQmqWoNcDGwKbLSTapqaGnn7a0HqNnbyEf7mjl0pIOW9gBFeTkMLshh/LCBTB45kDPHD2XIgDy/y/UUzjHGp4EvA++KyDr3vW8BtwIPiUgO0Ip7HCAiVcDfqeot7utKoBx4vXuGqhoQkVuBRSLShdMoN8VjhYw/mtsCvLD+Y55ZvYu1Ow7SFcbzb1kC08tL+OKMsVw5fQwD8lPnRgzRNHqCr6qqSu2WkNTS0h5gwYqP+OUbW2lsDUQ9n0H5Odz62RO4+ZzxcWkQEVmtqlXRTp86LWrSzrLNddyz6F32HG6NeV6NbQF+vLSG3729nR9+8RQumDIiDhVGz24JMRHr6OziO89v5G9+uyouTRGsrrGNmx6p5p+f20hHZ1dc5x0JawwTkcOtHfzNb1fx6Fsx3bwa0uNvb2fOgnc41NKR0OX0xhrDhK2pLcCcBe+wYsu+pCzv/z7cz1cWrKSxNfnNYY1hwtIe6OKWR1exdkdDUpe7ftchbnpkFW2BzqQu1xrDhOVfXnqft7ce8GXZq7Yd5Hsvvp/UZVpjmJBe2lDLYwk+pgjl9yt38ML65N1nao1h+nSwuZ17n9/odxkAfPeF99jf1JaUZVljmD7Nf2Uz+5vb/S4DgAPN7cxfsjkpy7LGML3atq+Zp1bt9LuMYzy9ehdb65sSvhxrDNOrny/fQiCcm56SqLNL+Y9lWxK+HGsM46mhpZ3n16XmQ5V/3FDLgQTv3lljGE/Prt1NW8C/WzL60h7oYvGaXQldhjWG8fTfG/f4XUKflryX2PqsMcxxDja3s2qbPxfzwlW9/SD7Enjq1s9cKRGR+0SkRkQ2icidcV87E5Xq7eE9aOQnVajedjBh8w/neYwA8PequkZEBgGrRWQpcD/wPVX9k4hc5r4+L3hCVV0GTAcQkVJgC04eFcCNOE/2TVHVLhEZHvvqmHhYuyNxv3DxtHbnQS49eWRC5u1nrtRtwJdUtcudd13k5ZtE+GBPo98lhOWD2sTV6Weu1ATgWhG5CqgH7lTV4wIVLFcq+XYeaAk9UgrYeTBxdfqZK5UPtLrP5T4MLPCa1nKlkq/2UHyfykuU2obE1elLrpRrV9D0zwLTwi3aJI6q0twefahBMh3p6KQzQWcJwjkrFSpXCsLLlXqix3vPAee7w+fihDwbn7V2dJFGwTEc6UjMA0y+5Eq5fggsFJF5QBNOlq3xWXaW+F1CRHISVG84Z6VWAL0tfYbH+NUE/ZKr6jacs1g9x2sALg+zTpMkeTlZ5GRJyt086EUE8nMSc43arnyb45QU5fpdQliKC3Nx9vTjzxrDHGfMkCK/SwhLeQLrtMYwxxlXmh6NUTHUGsMk0bSxxX6XEJZpYxJXpzWGOc5pFUP8LiEsiazTGsMcZ9rYYgYXpHbe96D8HKaXlyRs/tYY5ji52VlceKK/aeOhnDdlOHkJOlUL1himF1ecOsrvEvp0xbTE1meNYTydO2k4Y0oK/S7D0+jiAi6YktjHd6wxjKfsLOHGsyv9LsPTV86uJCc7sb+61himVzfMGsfwQfl+l3GMYQPz+cpZ4xK+HGsM06vCvGy+dvEkv8s4xryLP0VRXuLPmFljmD5dU1XOmeNL/S4DgJmVpcw+IzlPcVpjmD5lZQn3Xz2NQT5/1fDA/Bx+dPU0spJ0W7w1hglp3NAB/Pt1032t4cFrTmX8sAFJW541hgnLhSeO4NuXn+jLsu/53BQuOSkxMTm98S1wLWicn4pI4nPdTcxu+cwJ/MMlk5O6zK9dPIm/PXdCUpcJ/gaudT8Gmx53rBkAbj9/IsMG5vFPz25M6FN+OVnCD648mdkz/YlMCrnFUNVaVV3jDjcCcQlcE5FsYD7wj9GVbvxy7RkVPDF3FmOHJObK+JiSQhbecqZvTQEgGkEkhBts8AZwMk5zLMF5HjwLOFtVe/0GQxH5H+DHqvpH9/VdQJaq/kREmlR1YC/TBQeuzdi+3d8vSTSfaGoL8MCSzfzu7e1x2XpkZwlfmlnBP146mUEFsT1eKyKr3cyy6KYPtzHcwLXXgftUdbGI/BR4XVUXicg1wFxVvaiXaUcBG4DRqtohIqOBp4DzVDXQV2MEq6qq0urq6jBXzSTLtn3N/OeyLbyw/uOovlMjPyeLz08bzR0XTIzbmaekNIYbuPZHYEl3tpSIHAJKVFXd7KlDqjq4l+nvAk5S1e6Inctxsqq6o+QqgK2qOrGvOqwxUtuhlg5e3PAxyzfX8daH+2lu7z3zqSgvm7NOGMp5U4ZzxbRRlBTlxbWWWBsj5MF3GIFrywkvcO2e7heq+hJw9Pybu8XosylM6isuyuWGWeO4YdY4urqU3Q1H2LqvmcbWDlraOinMy2ZwYS4nDBvAmJLCpF2si4afgWsmg2VlCeWlRZSnSbBCT74FrvWYJuTxhTHJZFe+jfFgjWGMB2sMYzxYYxjjwRrDGA/WGMZ4sMYwxoM1hjEerDGM8WCNYYwHawxjPFhjGOPBGsMYD9YYxniwxjDGg2+5UiKyUEQ2i8hGEVngPj5rTEoIZ4vRnSs1FZgF3C4iU/kkV2o6cK/7+hiqukxVp7vjXAC08Emu1EJgCnAKUEjQw03G+C2cJ/hqgVp3uFFE4pIrpaovd38gIu8AYyOu3pgEiSjC2n1++zRgJXA3sEREHsDNlQox+XXAj3u+6e5CfRm4K5JajEmksA++3VypRcDdqnoYuA2Yp6rlwDycJJHeph2Fs8u0xOPjnwNvqOqbvUw71z2Gqa6vrw+3XGNi4kuuVND738HZAn1BVUMmdVmulAlXrLlS4ZyVCpUrBeHlSj3RY763AJcAs8NpCmOSyc9cqV8A24G3nN5jsap+P5aVMSZefMuVUlV/v7vKmD7YlW9jPFhjGOPBGsMYD9YYxniwxjDGgzWGMR6sMYzxYI1hjAdrDGM8WGMY48EawxgP1hjGeLDGMMaDNYYxHqwxjPFgjWGMBz8D18aLyEoR2SIiT4pIXtzXzpgo+Rm49iPgJ6o6ETgI3BzjuhgTNyEbQ1VrVXWNO9wIxBy45gYsXAA84372KHBlxNUbkyB+Ba4NBRpUNeC+3oXHc+HuMufiBi1UVFREUq4xUUuFwLU+qeqvVLVKVavKysoindyYqITVGG7g2iJgoaoudt+eA3QPPw0cd/Ad5BrgWVXtcF/vB0rc6B1wcmt3R1K4MYnkS+CaOvGHy3COO8BpsufDL9uYxApni9EduHZB0GnXy3AC1x4UkfXAvxIUuCYiv+6euI/AtW8AXxORLTjHHL3uihmTbH4Grm2l790vY3xjV76N8WCNYYwHawxjPFhjGOPBGsMYD9YYxniwxjDGgzWGMR6sMYzxYI1hjAdrDGM8WGMY48EawxgP1hjGeLDGMMaDNYYxHhIauOaOVyEir4jIJncele77F4rIGnf6FSIyMa5rZkwMEhq45noMmK+qJ+I8sVfnvv9fwPXu9L8Hvh3tShgTb+E82loL1LrDjSISduCa20A5qrrUnb4peNahpjfGL4kOXJsENIjIYmA88CrwTVXtxHku/GUROQIcxtkaeS3TAtdM0iU6cC0H+AzwdeAM4ATgRvezecBlqjoW+C2fpBQewwLXjB8SHbi2C1inqlvdOM7ngNNFpAw4VVVXuuM9SeiIT2OSJuSuVBiBa8vpPXBtFU7iYJmq1rvjVeOkmxeLyCRVrQEuxgmL7nea2wLsa2qjsTWACAwuyKVsUD4Fudl+l9avhXOM0R249q6IrHPf+xZO4NpDbsxmK0GBa8DfqeotqtopIl8HXnMbbDXwsKoGRORWYJGIdOE0yk3xXLFUVXe4ldc+qOP1zfW8u/sQuxuOHDdOlkBFaRHTy0s4b/Jwzp88nOKiXB+q7b/ESctMD1VVVVpdXe13GVFZuXU/C/73I17dVEdnV2T/5vk5WXx+2mhuPmc8U0cPDj2BQURWq2pVtNNHdFbKRG5LXSP3vbSJZZvro55HW6CLRWt2sXjtLq6cPoZvXDqFkcUFcazS9GSNkSBdXcpvVnzE/Fc20x7oiss8VeHZtbt5bdNevv9XJ3PlaZ5fKWLiwBojAVraA9z9h3W88v7ehMz/cGuAu59cx5odB7n381PJybZb3uLN/kXjrKGlnWt/+XbCmiLYY29tZ+7jq2kLdCZ8Wf2NNUYcNbZ2MGfBO7y7+1DSlvk/H9Rx+8K1cdtdMw5rjDjp7FLu+P1a1u9KXlN0e3XTXr734ntJX24ms8aIk58sreH1mujPPMVq4codPLVqp2/LzzTWGHGwZsdB/nP5Fr/L4LsvvsfOAy1+l5ERrDFi1B7o4hvPbCAVrpO2tHfyT89tJJ0u2qYqa4wYPVm9kz/XNYUeMUneqKnnzT/v87uMtGeNEYPWjk5+9lpfX1brj/lLNttWI0bWGDF4Yf3H1DW2+V3Gcd7dfYiVHx3wu4y0Zo0Rg9+9vd3vEnr1+FupW1s6sMaI0pa6Jjb4cM0iXEvf30tja4ffZaQta4wovfL+Hr9L6FN7Z5ev11XSnZ+5UiIi94lIjfvZnXFdswRbHsNt5Mmy7IPUrzFVhXN3bXeu1BoRGQSsFpGlfJIr9ScRucx9fZ7H9I8B96nqUjdQofumnhuBcmCKqnaJyPAY1yVpOjq72LCrwe8yQlq786DfJaQtP3OlbgO+pKpd7md1PadPVTV7G2ntSP2b9rbWN3PoSAfFhfZYbKQiOsbwyJWaLyI7gQeAezwmOZorJSJrRWS+iHQ/5T8BuNbdDfuTiHyql2XOdceprq9PjV2DbfvS57aLHfvTp9ZU4meuVD7Q6j6X+zCwwGu5qZgrtSON7kdKp1pTiS+5UkGfdU//LDAt4up9cqA59S7q9Sadak0l4ZyVCpUrBWHkSgWN9747/Bxwvjt8LlATUeU+amlPnyfm0qnWVOJLrpQ7jx8CC0VkHtCEk2XrK1WlvqmNhpYOmtoC5GVnMaggh5HFBeTnfBKA1tGZ+gfe3ezJvuiEc1ZqBSC9fDzDY/xqgn7J3TNSx+0mqWoDcHm4hSbKB3sO89qmOt6oqWdT7WEOtwaOGyc7Sxg3tIiZlaWcN7mMnKz0uS5amGeJhtHolykhgc4uXlj/MY/+37awHkXt7FK21jeztb6ZP6zaSV52b38nUo81RnT6XWMs31zHfS9tiukZivbO9Lmle5QFs0Wl3zRGU1uAH7z4Pk9W96/nosuHFPldQlrqF42x80ALNz2yKqWetEuG3GyhvNQaIxoZ3xibag9zw69Xsr+53e9Sku6k0cX2dQJRSp/TK1HYUtfYb5sCYMa4IX6XkLYytjEONLczZ8GqftsUABedOMLvEtJWRjZGZ5dy5xNrPb+Upb8YUpTLGZW2xYhWRjbG429tY8WW/h0hc/WMsZaCHoOM+5fb3XCE+5ds9rsM390wa5zfJaS1jGuMB1/Z3O9vnLvi1NGMGzrA7zLSWkY1xp/3NvLs2t1+l+Gr7Cxh3kWez3yZCGRUYyz4320pkSHrp5vPGc8JZQP9LiPtZUxjHG7t4Ll+vrWoHFrEvIsm+V1GRsiYxlj63l6OdPTfY4u8nCx+Nvt0u5s2TjKmMZa8l9oBaIn2b1edwilji/0uI2P4FrgW9PlPRSSmu/sCnV39+rrFty8/kS/OGOt3GRnFz8C17sdgY748u3lvY788RSsC3758KjefM97vUjKOb4Frbr7UfOBLwFWxrMT6nakbrpwoA/Ky+cm10/mLk0b6XUpGiui2c4/AtSUi8gDOLtnZHpMcDVwDxgOvAt9U1U7gDuAFVa11chJ6XeZc3KCFiooKz3G27W+OZDXS3szxpTz416fasxYJ5EvgmoiMBv4a+Fmo5YYTuNZfvpBx7JBC/v3a6fzh1lnWFAkW1hajj8C1u9zhp4Ffe0x6NHDNnc9zwCxgDzAR2OJuLYpEZIuqToxmJdLp1vIJZQP4sD78LZwIzKws5fpZ47j0pJHk5WTMicSUFrIxwghcW04YgWuqWu+OV62qLwFHd45FpCnapgA4kkYH3vdddQrlpUW8UVPPu7sPUbOnkX1NbTS2BhARBhfkMGJwAZNGDOTU8hI+O6mMYQPz/S673/EzcC1u0ilUrD3QxZiSQmbPrGC238WYXvkWuNZjmphu7ilIo6u9dmU6PWTEDuuANPplK0qjWvuzjGiMkYPTJ1QsnWrtzzKiMdLl1GVRXjalA/L8LsOEISMa41Mj0uP5g4nDB9LXxUyTOjKiMU6rSI80jNPTpE6TIY0xurggLcKLqyzOJm1kRGOISMqHi+VmC5+dlBrfIWhCy4jGALgkxe8yPWvCMAYX2NcKp4uMaYyzJgxl7JBCv8vo1XVnlPtdgolAxjRGdpZw/ZmpGTI2fFA+F09N7V09c6yMaQyA62dVUFKUersrf3vuBHItLjOtZNT/1uCCXG47d4LfZRxjdHEB15/p/YCVSV0Z1RgAc86uZEJZ6sRT3nvFVPvyljSUcY1RkJvN/VdPIxUuMH/u5JFcevIov8swUci4xgCYMa7U90S+8tJC/u0Lp/hag4meb7lSIrJQRDaLyEYRWeA+Phs3d5w/kUtO8udMUGFuNr+4YQYlRXbDYLoKZ4vRnSs1Fed57dvdWJzuXKnpwL3uay+PAfNV9URgJlDnvr8QmAKcAhQS9HBTPGRlCQ9ddxrnTBwWz9mGlJ+TxW9urOKk0ZYKmM5CNoaq1qrqGne4EYgpV0pVW9zhl9UFvAPEPUqvIDebh79SxfmTk3MrxqD8HBbceAZnT0huM5r4i+gYwyNXar6I7AQeAO7xmORorpSIrBWR+W7QWvA8c3GeKf/vyMsPrTDPaY6bPp3YtL5xQ4tY/NWz+XSSt1AmMXzJleoxzs+BN1T1zV6WO9c9hqmur68Pt9xji8jO4t4rprLgxirKBsU/cWP2zApeuvMzfGrEoLjP2/hDNIxvWnH/qv8RWNIdoSMih4ASVVU3AeSQqg7uMd0s4Eeqeq77+svALFW93X39HZwt0BdUNWTUR1VVlVZXV0e0gj0dbu3gl69/yG9WfERrR2zpIlXjhnDPZVOYMa40pvmY+BOR1apaFe30vuRKufO9BbgEuDCcpoiXwQW5/MMlU7jp0+N5qnoXT67awbb94ScZ5udkcclJI7n+zApmji+1J/IyVMgthoicA7wJvMsnSeXfAg4DD+E0VyvwVVVdHZwr5U5/MfAgTgTPamCuqraLSADYDjS681ysqt/vq5Z4bDF6UlW27mvmzZp6NtU2sqW+iYPN7TS2BcjPyWJgfg7lpUVMGjGQqspSzjphqF3JTgOxbjHC2pVKFYloDJOZYm2MjLzybUysrDGM8WCNYYwHawxjPFhjGOPBGsMYD9YYxniwxjDGgzWGMR7S6sq3iNTj3EaSDMOAfUlaVrJk4jqB93qNU9WoH8RJq8ZIJhGpjuWWglSUiesEiVkv25UyxoM1hjEerDF69yu/C0iATFwnSMB62TGGMR5si2GMB2sMYzyEfOY73YnIZODJoLdOwAmIOwuY7L5XAjS44XHB05bjBMaNwMnR+pWqPuR+VurOtxLYBlyjqgcTtBrHSeB6fRe4FeiOZPmWqr6ckJXwEON6FQBvAPk4v9vPqOp33M/GA38AhuI8Yv1lVW3vtRBV7Tc/QDawB+fiT/D7DwL3eow/CjjdHR4E1ABT3df3A990h7+Jk4aSCev1XeDrfv9fRbleAgx0h3Nx8s9mua+fAq5zh38B3NbXsvvbrtSFwIeqevTquZuCcg3wRM+RtfcURoC/Ah51hx8Frkxc2SHFc71SSaTrpara5L7MdX+6450uAJ5xPwv5/9XfGuM6jv8H/QywV1W94n+O6pHCCDBCVWvd4T04uyV+ied6AdwhIhvcsG0/v4M54vUSkWwRWYeTkbxUVVfi7D41qGrAHW0XIf4Q9JvGEJE84C+Bp3t8NBuPvz49pu2ZwngMdbbPvpz3TsB6/RcwAZgO1OLstiRdtOulqp3qHHuMBWaKyMnRLL/fNAbwOWCNqu7tfkNEcoAvcOzB3jHcFMZFwEJVXRz00V4RGeWOM4pPUtyTLa7rpap73V+uLuBhnIR6P0S1Xt1UtQFYBlwK7McJ/us+2TQW2N3X9P2pMbz+0lwEfKCqu7wm6COFEeAFYI47PAd4Po61RiKu69Xd7K6rgI1xrDUS0axXmYiUuMOFwMXu+IrTJFe7o4b+//L7zEOSzm4MwPmrUdzj/UdwUhOD3xsNvOwOn4Ozi7QBWOf+XOZ+NhR4DSea9FWgNEPW63Gc1MkNOM0/Ko3Waxqw1q19I0FnrnBO+74DbMHZPcvvqwa7JcQYD/1pV8qYsFljGOPBGsMYD9YYxniwxjDGgzWGMR6sMYzx8P+BuhaU8SzStQAAAABJRU5ErkJggg==
-"
-class="
-jp-needs-light-background
-"
->
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Mobility can be one of the factors for increase in the AQI levels.</span>
@@ -14879,7 +14749,7 @@ jp-needs-light-background
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Computing highway and railway line density</span>
@@ -14928,7 +14798,7 @@ Loni, Ghaziabad - UPPCB=0.07730455236204287
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Observations from the Road Density Values</span>
@@ -14947,7 +14817,7 @@ Loni, Ghaziabad - UPPCB=0.07730455236204287
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Forest cover is another important indicator for AQI levels.</span>
@@ -14967,7 +14837,7 @@ Loni, Ghaziabad - UPPCB=0.07730455236204287
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Computing Forest density</span>
@@ -15016,7 +14886,7 @@ Loni, Ghaziabad - UPPCB=0.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Observations from the Forest Density Analysis</span>
@@ -15035,7 +14905,7 @@ Loni, Ghaziabad - UPPCB=0.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Industries are another important indicator for the AQI levels.</span>
@@ -15056,7 +14926,7 @@ Loni, Ghaziabad - UPPCB=0.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Computing Industrial density</span>
@@ -15105,7 +14975,7 @@ Loni, Ghaziabad - UPPCB=0.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Observations from the industries layer</span>
@@ -15123,7 +14993,7 @@ Loni, Ghaziabad - UPPCB=0.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading aerosol data and the distance arrays</span>
@@ -15133,8 +15003,13 @@ Loni, Ghaziabad - UPPCB=0.0
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-<span class="n">aerosolArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdal_array</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/aerosol_layer.tif&#39;</span><span class="p">))</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">aerosolArray</span><span class="p">)</span>
+<span class="n">aerosolArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdal_array</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/aerosol_layer0401.tif&#39;</span><span class="p">))</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">aerosolArray</span><span class="p">)</span>
+<span class="n">cloudCover01</span> <span class="o">=</span>  <span class="mf">0.03</span> <span class="c1"># Metadata: Land Cloud cover collected from the Landsat Website</span>
+
+<span class="n">aerosolArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdal_array</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/aerosol_layer0424.tif&#39;</span><span class="p">))</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">aerosolArray</span><span class="p">)</span>
+<span class="n">cloudCover24</span> <span class="o">=</span> <span class="mf">41.56</span> <span class="c1"># Metadata: Land Cloud cover collected from the Landsat Website</span>
 
 <span class="n">dist_forest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdal_array</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/dist_from_forests.tif&#39;</span><span class="p">))</span>
 <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dforest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">dist_forest</span><span class="p">)</span>
@@ -15145,13 +15020,21 @@ Loni, Ghaziabad - UPPCB=0.0
 <span class="n">dist_industries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gdal_array</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">WORKDIR</span><span class="o">+</span><span class="s1">&#39;/datasets/dist_from_industries.tif&#39;</span><span class="p">))</span>
 <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dindustries&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">dist_industries</span><span class="p">)</span>
 
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">aerosolArray</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">aerosolArray</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">aerosolArray</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
 
-<span class="c1">#Finding Correlation between the proximity from different features and aerosol levels.</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Forests: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dforest&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Highways: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dhighways&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Industries: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dindustries&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="c1"># Comparing the aerosol levels</span>
+<span class="c1"># Finding Correlation between the proximity from different features and aerosol levels.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Aerosol Levels before lockdown&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean aerosol level: &#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Forests: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dforest&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Highways: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dhighways&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Industries: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dindustries&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Aerosol Levels after lockdown&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean aerosol level: &#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Forests: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dforest&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Highways: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dhighways&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aerosol-Proximity from Industries: &#39;</span><span class="p">,</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;aerosol24&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;dindustries&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15172,11 +15055,18 @@ Loni, Ghaziabad - UPPCB=0.0
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Aerosol-Proximity from Forests:  0.011710668910335304
-Aerosol-Proximity from Highways:  0.0051661418193077145
-Aerosol-Proximity from Industries:  0.009112279248524582
-</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+Input <span class="ansi-green-intense-fg ansi-bold">In [1]</span>, in <span class="ansi-cyan-fg">&lt;cell line: 6&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">osgeo</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> gdal_array
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span class="ansi-bold" style="color: rgb(0,0,255)">numpy</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> <span class="ansi-bold" style="color: rgb(0,0,255)">np</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 6</span> dataset <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pd</span><span style="color: rgb(98,98,98)">.</span>DataFrame()
+<span class="ansi-green-fg">      8</span> aerosolArray <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>array(gdal_array<span style="color: rgb(98,98,98)">.</span>LoadFile(WORKDIR<span style="color: rgb(98,98,98)">+</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">/datasets/aerosol_layer0401.tif</span><span style="color: rgb(175,0,0)">&#39;</span>))
+<span class="ansi-green-fg">      9</span> dataset[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">aerosol01</span><span style="color: rgb(175,0,0)">&#39;</span>] <span style="color: rgb(98,98,98)">=</span> np<span style="color: rgb(98,98,98)">.</span>ndarray<span style="color: rgb(98,98,98)">.</span>flatten(aerosolArray)
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;pd&#39; is not defined</pre>
 </div>
 </div>
 
@@ -15189,14 +15079,16 @@ Aerosol-Proximity from Industries:  0.009112279248524582
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Observations</span>
 
-<span class="c1"># The pearson correlation between aerosol and distance from forests is the highest. This</span>
-<span class="c1"># indicates that there is a positive and stronger linear relationship between aerosol </span>
-<span class="c1"># levels and proximity of forests than with industries and highways.</span>
+<span class="c1"># Mean aerosol levels are higher during the lockdown period.</span>
+<span class="c1"># The cloud cover during the period of lockdown is higher than during no lockdown. </span>
+<span class="c1"># The pearson correlation between aerosol and proximity from forests is higher during no lockdown.</span>
+<span class="c1"># The pearson correlation between aerosol and proximity from highways is negative during no lockdown.</span>
+<span class="c1"># The pearson correlation between aerosol and proximity from highways is positive and higher during lockdown.</span>
 </pre></div>
 
      </div>
@@ -15209,7 +15101,7 @@ Aerosol-Proximity from Industries:  0.009112279248524582
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Summary of Observations from the analysis</span>
@@ -15226,9 +15118,9 @@ Aerosol-Proximity from Industries:  0.009112279248524582
 
 <span class="c1"># Mandir marg has highest density of industries among the other two regions.</span>
 
-<span class="c1"># The pearson correlation between aerosol and distance from forests is the highest. This</span>
-<span class="c1"># indicates that there is a positive and stronger linear relationship between aerosol </span>
-<span class="c1"># levels and proximity of forests than with industries and highways.</span>
+<span class="c1"># The pearson correlation between aerosol and proximity from forests is higher during no lockdown.</span>
+<span class="c1"># The pearson correlation between aerosol and proximity from highways is negative during no lockdown.</span>
+<span class="c1"># The pearson correlation between aerosol and proximity from highways is positive and higher during lockdown.</span>
 
 <span class="c1"># Conclusions</span>
 
