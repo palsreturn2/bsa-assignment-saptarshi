@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import os
@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 WORKDIR = os.getcwd()
 
 
-# In[2]:
+# In[3]:
 
 
 # Reading air quality sensor data obtained from CPCB platform.
@@ -47,7 +47,7 @@ for i in range(0, len(locations)):
                                               & (aq_sensor_data['datetime']<lockdown_date)]['aqi'].mean()))
 
 
-# In[3]:
+# In[4]:
 
 
 # Observations from the data
@@ -62,7 +62,7 @@ for i in range(0, len(locations)):
 # The mean AQI of Chandni Chowk decreases significantly during the lockdown period.
 
 
-# In[4]:
+# In[5]:
 
 
 # Region of interest: Buffer of 0.02 degrees is taken around the ground sensors.
@@ -72,7 +72,7 @@ gdf['geometry'] = gdf['geometry']
 gdf['geometry'] = gdf['geometry'].buffer(0.02)
 
 
-# In[5]:
+# In[6]:
 
 
 # Mobility can be one of the factors for increase in the AQI levels.
@@ -82,7 +82,7 @@ gdf['geometry'] = gdf['geometry'].buffer(0.02)
 hr_gpd = gpd.read_file(WORKDIR+'/datasets/highways_railways.geojson')
 
 
-# In[6]:
+# In[7]:
 
 
 #Computing highway and railway line density
@@ -93,7 +93,7 @@ for i in range(0, len(locations)):
     print(a1['name']+'='+str(road_density.sum()))
 
 
-# In[7]:
+# In[8]:
 
 
 # Observations from the Road Density Values
@@ -102,7 +102,7 @@ for i in range(0, len(locations)):
 # Loni, Ghaziabad has the least highway and railway density in the region.
 
 
-# In[8]:
+# In[9]:
 
 
 # Forest cover is another important indicator for AQI levels.
@@ -112,7 +112,7 @@ for_gpd = gpd.read_file(WORKDIR+'/datasets/forests.geojson')
 for_gpd['geometry'] = for_gpd['geometry'].buffer(0)
 
 
-# In[9]:
+# In[10]:
 
 
 #Computing Forest density
@@ -123,7 +123,7 @@ for i in range(0, len(locations)):
     print(a1['name']+'='+str(forest_density.sum()))
 
 
-# In[10]:
+# In[11]:
 
 
 # Observations from the Forest Density Analysis
@@ -132,7 +132,7 @@ for i in range(0, len(locations)):
 # Loni Ghaziabad has the least forest density cover.
 
 
-# In[11]:
+# In[12]:
 
 
 # Industries are another important indicator for the AQI levels.
@@ -143,7 +143,7 @@ ind_gpd = gpd.read_file(WORKDIR+'/datasets/industrial.geojson')
 ind_gpd['geometry'] = ind_gpd['geometry'].buffer(0)
 
 
-# In[12]:
+# In[13]:
 
 
 #Computing Industrial density
@@ -154,7 +154,7 @@ for i in range(0, len(locations)):
     print(a1['name']+'='+str(ind_density.sum()))
 
 
-# In[13]:
+# In[14]:
 
 
 # Observations from the industries layer
@@ -162,7 +162,48 @@ for i in range(0, len(locations)):
 # Mandir marg has highest density of industries among the other two regions.
 
 
-# In[1]:
+# In[15]:
+
+
+# Firespots data analysis
+import numpy as np
+
+firespots = gpd.read_file(WORKDIR+'/datasets/firespots.geojson')
+
+firespots['acq_date'] = pd.to_datetime(firespots['acq_date'], format='%Y-%m-%d')
+
+
+def compute_distances(reg, df1):
+    dists = []
+    for i, centr in df1.centroid.iteritems():
+        dist = centr.distance(reg.geometry.centroid)
+        dists.append(dist)        
+    return np.array(dists)
+
+print('During Lockdown Stages')
+firespots_lockdown = firespots[firespots['acq_date']>lockdown_date]
+print('Total number of firespots: ', firespots_lockdown['acq_date'].count())
+print('Min Distance of fires from '+locations[0]+': '+str(compute_distances(gdf.iloc[0], firespots_lockdown).min()))
+print('Min Distance of fires from '+locations[1]+': '+str(compute_distances(gdf.iloc[1], firespots_lockdown).min()))
+print('Min Distance of fires from '+locations[2]+': '+str(compute_distances(gdf.iloc[2], firespots_lockdown).min()))
+print('During no lockdown Stages')
+firespots_nolockdown = firespots[firespots['acq_date']<lockdown_date]
+print('Total number of firespots: ', firespots_nolockdown['acq_date'].count())
+print('Min Distance of fires from '+locations[0]+': '+str(compute_distances(gdf.iloc[0], firespots_nolockdown).min()))
+print('Min Distance of fires from '+locations[1]+': '+str(compute_distances(gdf.iloc[1], firespots_nolockdown).min()))
+print('Min Distance of fires from '+locations[2]+': '+str(compute_distances(gdf.iloc[2], firespots_nolockdown).min()))
+
+
+# In[16]:
+
+
+# Observations:
+
+# Firespots are near to Chandni Chowk, Delhi - IITM station than others.
+# Number of firespots during the lockdown is more than during no lockdown.
+
+
+# In[17]:
 
 
 # Loading aerosol data and the distance arrays
@@ -206,7 +247,7 @@ print('Aerosol-Proximity from Highways: ',dataset['aerosol24'].corr(dataset['dhi
 print('Aerosol-Proximity from Industries: ',dataset['aerosol24'].corr(dataset['dindustries'], method='pearson'))
 
 
-# In[16]:
+# In[18]:
 
 
 # Observations
@@ -218,7 +259,7 @@ print('Aerosol-Proximity from Industries: ',dataset['aerosol24'].corr(dataset['d
 # The pearson correlation between aerosol and proximity from highways is positive and higher during lockdown.
 
 
-# In[17]:
+# In[19]:
 
 
 # Summary of Observations from the analysis
@@ -235,14 +276,20 @@ print('Aerosol-Proximity from Industries: ',dataset['aerosol24'].corr(dataset['d
 
 # Mandir marg has highest density of industries among the other two regions.
 
+# Firespots are near to Chandni Chowk, Delhi - IITM station than others.
+# Number of firespots during the lockdown is more than during no lockdown.
+
+# Mean aerosol levels are higher during the lockdown period.
+# The cloud cover during the period of lockdown is higher than during no lockdown. 
 # The pearson correlation between aerosol and proximity from forests is higher during no lockdown.
 # The pearson correlation between aerosol and proximity from highways is negative during no lockdown.
 # The pearson correlation between aerosol and proximity from highways is positive and higher during lockdown.
 
 # Conclusions
 
-# The decrease in mean AQI in Chandni Chowk is possibly because of the presence of forest
-# and absence of industry together.
+# With increase in the number of fire occurrences, the Mean aerosol levels can rise.
+# With increase in distance from forest cover, the aerosol levels also increase.
+# Even when there is limited mobility, the aerosol levels can be higher because of nearby fires and absence of forest cover.
 
 
 # In[ ]:

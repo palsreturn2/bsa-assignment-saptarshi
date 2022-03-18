@@ -3,6 +3,10 @@ AQI ground truth data
 https://app.cpcbccr.com/AQI_India/
 https://aqicn.org/data-platform/register/
 
-Landsat NDVI
+Landsat Aerosol products
 
 https://earthexplorer.usgs.gov/
+
+NASA Fire hotspots data
+
+https://firms.modaps.eosdis.nasa.gov/country/

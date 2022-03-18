@@ -2,7 +2,7 @@ BSA Assignment Version 1.0
 
 ## Assignment
 
-To view the assignment, please open main.html file.
+To view the assignment codes and results, please open main.html file.
 
 ## Getting Started
 
@@ -18,7 +18,6 @@ $ docker build -t bsa_assignment_image .
 $ docker run -p 8080:8888 -d --name bsa_assignment_container bsa_assignment_image
 $ docker logs bsa_assignment_container
 ```
-Visit http://127.0.0.1:8080/ in the browser to run the codes.
 
 ## Author
 
